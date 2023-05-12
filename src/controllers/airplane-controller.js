@@ -88,9 +88,30 @@ async function destoryAirplane(req, res) {
     }
 }
 
+/** 
+ * PATCH : /airplanes/:id
+ * req-body {}
+ */
+
+async function updateAirplane(req, res) {
+    try {
+        const airplanes = await AirplaneService.updateAirplane(req.params.id, {capacity: req.body.capacity});
+        SuccessResponse.data = airplanes;
+        return res
+            .status(StatusCodes.OK)
+            .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+            .status(error.statusCode)
+            .json(ErrorResponse);
+    }
+}
+
 module.exports = {
     createAirplane,
     getAirplanes,
     getAirplane,
-    destoryAirplane
+    destoryAirplane,
+    updateAirplane
 }
