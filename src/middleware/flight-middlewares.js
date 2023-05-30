@@ -14,7 +14,7 @@ function validateCreateRequest(req, res, next) {
     if (!req.body.airplaneId) {
         ErrorResponse.message = "Something went Wrong while creating flight";
 
-        ErrorResponse.error = new AppError(["airplaneId found in the incoming request in the correct form"], StatusCodes.BAD_REQUEST)
+        ErrorResponse.error = new AppError(["airplaneId not found in the incoming request in the correct form"], StatusCodes.BAD_REQUEST)
         return res
             .status(StatusCodes.BAD_REQUEST)
             .json(ErrorResponse);
@@ -73,7 +73,19 @@ function validateCreateRequest(req, res, next) {
             .status(StatusCodes.BAD_REQUEST)
             .json(ErrorResponse);
     }
-    
+
+    next();
+}
+
+function validateUpdateSeatsRequest(req, res, next) {
+    if (!req.body.seats) {
+        ErrorResponse.message = "Something went Wrong while updating flight";
+
+        ErrorResponse.error = new AppError(["Seats not found in the incoming request in the correct form"], StatusCodes.BAD_REQUEST)
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .json(ErrorResponse);
+    }
     next();
 }
 
@@ -81,5 +93,6 @@ function validateCreateRequest(req, res, next) {
 
 
 module.exports = {
-    validateCreateRequest
+    validateCreateRequest,
+    validateUpdateSeatsRequest
 }
