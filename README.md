@@ -76,7 +76,7 @@ By integrating these models within our flight service backend project, we have e
 | `/{id}` | `DELETE` |         |Delete City by ID     |
 | `/{id}` | `PATCH` |  `name`       |Update Airplane     |
 
-#### City endpoint
+#### Airport endpoint
 
 ```http
   /api/v1/airports
