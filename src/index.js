@@ -12,5 +12,6 @@ app.use('/api', apiRoutes);
 // app.use('/flightsService/api', apiRoutes);
 
 app.listen(ServerConfig.PORT, async ()=>{
+    console.log(`Server Started at ${ServerConfig.PORT}`)
 });
 
